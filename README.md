@@ -2,7 +2,9 @@
 
 QA tooling for Switchify.
 
-This repo currently contains a PowerShell harness for ADB-driven manual scanning tests against debug builds of the Switchify Android app.
+This repo contains QA tooling for ADB-driven manual scanning tests against debug builds of the Switchify Android app.
+
+The TypeScript runner can take a human goal, ask an isolated read-only Codex child agent what to do next from screenshots and state, execute only approved Switchify ADB bridge actions, and write reproducible evidence under `runs/`.
 
 ## Requirements
 
@@ -13,6 +15,34 @@ This repo currently contains a PowerShell harness for ADB-driven manual scanning
 - `adb` available on `PATH`, via `ANDROID_HOME`, via `ANDROID_SDK_ROOT`, or passed with `-AdbPath`.
 
 ## Commands
+
+Install the TypeScript runner dependencies:
+
+```powershell
+npm install
+```
+
+Run a Codex-driven QA goal:
+
+```powershell
+npm run qa -- --goal "Open YouTube and watch a video" --device <device-id>
+```
+
+Validate the runner without priming or sending ADB actions:
+
+```powershell
+npm run qa -- --goal "Dry run validation" --dry-run
+```
+
+Run static checks:
+
+```powershell
+npm test
+```
+
+See [docs/codex-runner.md](docs/codex-runner.md) for the runner architecture, evidence format, and finding handoff workflow.
+
+## Manual Harness
 
 Run a device/environment check:
 

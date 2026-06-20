@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/switchifyapp/switchify-qa/schemas/codex-decision.schema.json",
+  "title": "Switchify QA Codex Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observation",
+    "action",
+    "rationale",
+    "success",
+    "confidence",
+    "weirdFindings"
+  ],
+  "properties": {
+    "observation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "type": "string",
+      "enum": ["next", "previous", "select", "home", "back", "capture", "stop"]
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "weirdFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "title", "evidence", "expected", "actual"],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": ["info", "warning", "bug", "critical"]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expected": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actual": {
+            "type": "string",
+            "minLength": 1
+          },
+          "suspectedArea": {
+            "type": "string"
+          },
+          "androidRepoSearchHints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

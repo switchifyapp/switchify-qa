@@ -1,0 +1,16 @@
+{
+  "name": "switchify-qa",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "scripts": {
+    "qa": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
