@@ -23,8 +23,6 @@ export async function runCodexDecision(input: {
     "--ephemeral",
     "--sandbox",
     "read-only",
-    "--ask-for-approval",
-    "never",
     "--cd",
     input.runDir,
     "--image",
@@ -40,7 +38,11 @@ export async function runCodexDecision(input: {
   }
   args.push("-");
 
-  const result = await runCommand("codex", args, {
+  const command = process.platform === "win32" ? "cmd.exe" : "codex";
+  const commandArgs = process.platform === "win32"
+    ? ["/d", "/c", ["codex.cmd", ...args].join(" ")]
+    : args;
+  const result = await runCommand(command, commandArgs, {
     input: input.prompt,
     allowFailure: true
   });
@@ -53,6 +55,7 @@ export async function runCodexDecision(input: {
   const raw = await readFile(lastMessagePath, "utf8");
   return validateCodexDecision(parseDecision(raw));
 }
+
 
 function parseDecision(raw: string): unknown {
   const trimmed = raw.trim();

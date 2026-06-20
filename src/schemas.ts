@@ -26,8 +26,12 @@ function validateFinding(value: unknown, index: number): WeirdFinding {
       throw new Error(`weirdFindings[${index}].${key} must be a non-empty string`);
     }
   }
-  if (value.suspectedArea !== undefined && typeof value.suspectedArea !== "string") {
-    throw new Error(`weirdFindings[${index}].suspectedArea must be a string`);
+  if (
+    value.suspectedArea !== undefined &&
+    value.suspectedArea !== null &&
+    typeof value.suspectedArea !== "string"
+  ) {
+    throw new Error(`weirdFindings[${index}].suspectedArea must be a string or null`);
   }
   if (
     value.androidRepoSearchHints !== undefined &&

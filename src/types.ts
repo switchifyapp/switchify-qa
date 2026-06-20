@@ -21,7 +21,7 @@ export type WeirdFinding = {
   evidence: string;
   expected: string;
   actual: string;
-  suspectedArea?: string;
+  suspectedArea?: string | null;
   androidRepoSearchHints?: string[];
 };
 
