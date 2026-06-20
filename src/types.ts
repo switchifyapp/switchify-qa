@@ -2,13 +2,11 @@ export const runnerActions = [
   "next",
   "previous",
   "select",
-  "home",
-  "back",
   "capture",
   "stop"
 ] as const;
 
-export const bridgeActions = ["next", "previous", "select", "home", "back"] as const;
+export const bridgeActions = ["next", "previous", "select"] as const;
 
 export type RunnerAction = (typeof runnerActions)[number];
 export type BridgeAction = (typeof bridgeActions)[number];

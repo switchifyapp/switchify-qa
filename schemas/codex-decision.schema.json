@@ -19,7 +19,7 @@
     },
     "action": {
       "type": "string",
-      "enum": ["next", "previous", "select", "home", "back", "capture", "stop"]
+      "enum": ["next", "previous", "select", "capture", "stop"]
     },
     "rationale": {
       "type": "string",

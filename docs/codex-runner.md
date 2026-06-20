@@ -32,13 +32,13 @@ The child must not run ADB or shell commands. It can only choose one of:
 next
 previous
 select
-home
-back
 capture
 stop
 ```
 
 The parent validates the action before doing anything. Unknown actions fail the run and write a summary.
+
+The default runner is intentionally single-switch-only. It does not allow system recovery actions such as Home or Back; getting stuck should produce findings instead of escaping the workflow.
 
 ## Run Directory Format
 
@@ -99,4 +99,4 @@ That summary can be handed to another agent to inspect `switchify-android` and f
 - The runner does not use `uiautomator dump` inside the Codex loop because it can disrupt accessibility service state.
 - Child Codex success is visual/state based, not a deterministic assertion engine.
 - The first version primes at start and leaves the device in the final state for debugging.
-- The parent currently supports only the Switchify debug bridge actions needed for single-switch QA and basic recovery.
+- The parent currently supports only the Switchify debug bridge actions needed for single-switch QA. System recovery actions are intentionally excluded from the default runner.
